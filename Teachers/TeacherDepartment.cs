@@ -15,6 +15,7 @@ namespace Teachers
     {
         DAL dal = new DAL();
 
+        public bool firstFocus { get; set; } = true;
         public TeacherDepartment()
         {
             InitializeComponent();
@@ -63,6 +64,7 @@ namespace Teachers
                         dgrv_subjects.Rows.Add();
                         dgrv_subjects.Rows[i].Cells["Subject"].Value = subject.Name;
                         dgrv_subjects.Rows[i].Cells["Id"].Value = subject.Id;
+                        dgrv_subjects.Rows[i].Cells["RecordId"].Value = subject.RecordId;
                         i++;
                     }
                 }
@@ -102,6 +104,51 @@ namespace Teachers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_subjectDelete_Click(object sender, EventArgs e)
+        {
+            int? Id = null;
+            try
+            {
+                Id = dgrv_subjects.CurrentRow.Cells["RecordId"].Value as int?;
+            }
+            catch{}
+            if (Id != null && Id > 0)
+            { 
+                DialogResult result = MessageBox.Show("Ви впевнені, що хочете видалити предмет?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        bool succes = dal.DeleteTeacherSubject(Id.Value);
+                        if (succes)
+                        {
+                            int teacherId = Convert.ToInt32(dataGridView1.CurrentRow.Cells["idDataGridViewTextBoxColumn"].Value);
+                            FillSubjectTable(teacherId);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AddTeacher addTeacher = new AddTeacher(this);
+            addTeacher.ShowDialog();
+        }
+
+        private void TeacherDepartment_Activated(object sender, EventArgs e)
+        {
+            if (firstFocus)
+            {
+                TeacherDepartment_Load(sender, e);
+                firstFocus = false;
             }
         }
     }

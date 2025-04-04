@@ -21,6 +21,18 @@ namespace Teachers
         private void button1_Click(object sender, EventArgs e)
         {
             DAL dal;
+            DataBaseHelper dbHelper=new DataBaseHelper();
+            if (!dbHelper.ExistDatabase("Teachers"))
+            { 
+                MessageBox.Show("База даних не знайдена. Створіть базу даних", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!dbHelper.ExistTable("Users") || !dbHelper.ExistTable("Teachers") || !dbHelper.ExistTable("Departments") || !dbHelper.ExistTable("Subjects")
+                || !dbHelper.ExistTable("TeacherSubjects"))
+            {
+                MessageBox.Show("Таблиці в базі даних не знайдено", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             User user;
             string login = txt_login.Text;
             string password = txt_password.Text;
@@ -32,7 +44,6 @@ namespace Teachers
                 {
                     if (user.ValidateUser(password))
                     {
-                        //MessageBox.Show("Ви увійшли в систему", "Успіх", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         TeacherDepartment teacherDepartment = new TeacherDepartment();
                         this.Visible = false;
                         teacherDepartment.Show();

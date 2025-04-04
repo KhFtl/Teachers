@@ -93,7 +93,7 @@ namespace Teachers
         public List<Subject> GetTeacherSubjects(int teacherId)
         { 
             List<Subject> subjects = new List<Subject>();
-            string query = $"SELECT Subjects.Name, Subjects.Id FROM Teachers INNER JOIN(Subjects INNER JOIN TeacherSubjects ON Subjects.Id = TeacherSubjects.SubjectId)" +
+            string query = $"SELECT TeacherSubjects.Id as RecordId, Subjects.Name, Subjects.Id FROM Teachers INNER JOIN(Subjects INNER JOIN TeacherSubjects ON Subjects.Id = TeacherSubjects.SubjectId)" +
                            $" ON Teachers.Id = TeacherSubjects.TeacherId WHERE Teachers.Id = {teacherId};";
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -106,7 +106,7 @@ namespace Teachers
                         {
                             while (reader.Read())
                             {
-                                subjects.Add(new Subject { Id = Convert.ToInt32(reader["Id"].ToString()), Name = reader["Name"].ToString() });
+                                subjects.Add(new Subject { RecordId = Convert.ToInt32(reader["RecordId"].ToString()), Id = Convert.ToInt32(reader["Id"].ToString()), Name = reader["Name"].ToString() });
                             }
                         }
                     }
@@ -139,6 +139,58 @@ namespace Teachers
                 catch (Exception ex)
                 {
                     throw new Exception("Помилка при додаванні предмета вчителю: " + ex.Message);
+                }
+            }
+        }
+        public bool DeleteTeacherSubject(int Id)
+        {
+            if (Id <= 0 )
+            {
+                throw new Exception("Не вірно вказано Id запису");
+            }
+            string query = $"DELETE FROM TeacherSubjects WHERE Id = {Id}";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        int rowAffcted = command.ExecuteNonQuery();
+                        return rowAffcted > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Помилка при видалені предмета у вчителя: " + ex.Message);
+                }
+            }
+        }
+        public bool AddTeacher(Teacher teacher)
+        {
+            if (String.IsNullOrEmpty(teacher.FirstName) || String.IsNullOrEmpty(teacher.LastName) || teacher.DepartmentId <= 0)
+            { 
+                throw new Exception("Не вірно вказано дані викладача");
+            }
+            string query = $"INSERT INTO Teachers (LastName, FirstName, BirthDate, DepartmentId) VALUES (@LastName, @FirstName, @BirthDate, @DepartmentId)";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@LastName", teacher.LastName);
+                        command.Parameters.AddWithValue("@FirstName", teacher.FirstName);
+                        command.Parameters.AddWithValue("@BirthDate", teacher.BirthDate);
+                        command.Parameters.AddWithValue("@DepartmentId", teacher.DepartmentId);
+                        int rowAffcted = command.ExecuteNonQuery();
+                        return rowAffcted > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Помилка при додаванні викладача: " + ex.Message);
                 }
             }
         }

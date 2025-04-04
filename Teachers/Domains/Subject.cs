@@ -10,14 +10,16 @@ namespace Teachers.Domains
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int RecordId { get; set; }
         public Subject()
         {
             
         }
-        public Subject(int id, string name)
+        public Subject(int id, string name, int recordId)
         {
             Id = id;
             Name = name;
+            RecordId = recordId;
         }
     }
 }

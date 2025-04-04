@@ -34,10 +34,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeacherDepartment));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.birthDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.departmentIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.departmentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.teachersDataSet = new Teachers.TeachersDataSet();
             this.teachersBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -58,23 +63,21 @@
             this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.birthDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.departmentIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgrv_subjects = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RecordId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btn_subjectDelete = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txt_TeacherName = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.subjectsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.subjectsTableAdapter = new Teachers.TeachersDataSetTableAdapters.SubjectsTableAdapter();
-            this.txt_TeacherName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Subject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentsBindingSource)).BeginInit();
@@ -119,6 +122,49 @@
             this.dataGridView1.Size = new System.Drawing.Size(1317, 328);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // lastNameDataGridViewTextBoxColumn
+            // 
+            this.lastNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.lastNameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Прізвище виклада";
+            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "Ім\'я викладача";
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            // 
+            // birthDateDataGridViewTextBoxColumn
+            // 
+            this.birthDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.birthDateDataGridViewTextBoxColumn.DataPropertyName = "BirthDate";
+            this.birthDateDataGridViewTextBoxColumn.HeaderText = "Дата народження";
+            this.birthDateDataGridViewTextBoxColumn.Name = "birthDateDataGridViewTextBoxColumn";
+            // 
+            // departmentIdDataGridViewTextBoxColumn
+            // 
+            this.departmentIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.departmentIdDataGridViewTextBoxColumn.DataPropertyName = "DepartmentId";
+            this.departmentIdDataGridViewTextBoxColumn.DataSource = this.departmentsBindingSource;
+            this.departmentIdDataGridViewTextBoxColumn.DisplayMember = "Name";
+            this.departmentIdDataGridViewTextBoxColumn.HeaderText = "Кафедра";
+            this.departmentIdDataGridViewTextBoxColumn.Name = "departmentIdDataGridViewTextBoxColumn";
+            this.departmentIdDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.departmentIdDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.departmentIdDataGridViewTextBoxColumn.ValueMember = "Id";
             // 
             // departmentsBindingSource
             // 
@@ -281,49 +327,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // lastNameDataGridViewTextBoxColumn
-            // 
-            this.lastNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            this.lastNameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.lastNameDataGridViewTextBoxColumn.HeaderText = "Прізвище виклада";
-            this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "Ім\'я викладача";
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            // 
-            // birthDateDataGridViewTextBoxColumn
-            // 
-            this.birthDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.birthDateDataGridViewTextBoxColumn.DataPropertyName = "BirthDate";
-            this.birthDateDataGridViewTextBoxColumn.HeaderText = "Дата народження";
-            this.birthDateDataGridViewTextBoxColumn.Name = "birthDateDataGridViewTextBoxColumn";
-            // 
-            // departmentIdDataGridViewTextBoxColumn
-            // 
-            this.departmentIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.departmentIdDataGridViewTextBoxColumn.DataPropertyName = "DepartmentId";
-            this.departmentIdDataGridViewTextBoxColumn.DataSource = this.departmentsBindingSource;
-            this.departmentIdDataGridViewTextBoxColumn.DisplayMember = "Name";
-            this.departmentIdDataGridViewTextBoxColumn.HeaderText = "Кафедра";
-            this.departmentIdDataGridViewTextBoxColumn.Name = "departmentIdDataGridViewTextBoxColumn";
-            this.departmentIdDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.departmentIdDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.departmentIdDataGridViewTextBoxColumn.ValueMember = "Id";
-            // 
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -338,20 +341,47 @@
             // dgrv_subjects
             // 
             this.dgrv_subjects.AllowUserToAddRows = false;
+            this.dgrv_subjects.AllowUserToDeleteRows = false;
             this.dgrv_subjects.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgrv_subjects.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrv_subjects.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
+            this.RecordId,
             this.Subject});
             this.dgrv_subjects.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgrv_subjects.Location = new System.Drawing.Point(3, 25);
             this.dgrv_subjects.Name = "dgrv_subjects";
+            this.dgrv_subjects.ReadOnly = true;
             this.dgrv_subjects.Size = new System.Drawing.Size(533, 294);
             this.dgrv_subjects.TabIndex = 0;
+            // 
+            // Id
+            // 
+            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // RecordId
+            // 
+            this.RecordId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.RecordId.HeaderText = "RecordId";
+            this.RecordId.Name = "RecordId";
+            this.RecordId.ReadOnly = true;
+            this.RecordId.Visible = false;
+            // 
+            // Subject
+            // 
+            this.Subject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Subject.HeaderText = "Предмет";
+            this.Subject.Name = "Subject";
+            this.Subject.ReadOnly = true;
             // 
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.btn_subjectDelete);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.txt_TeacherName);
@@ -364,14 +394,42 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Призначення предметів";
             // 
-            // label1
+            // btn_subjectDelete
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(167, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Оберіть предмет";
+            this.btn_subjectDelete.Location = new System.Drawing.Point(10, 178);
+            this.btn_subjectDelete.Name = "btn_subjectDelete";
+            this.btn_subjectDelete.Size = new System.Drawing.Size(218, 39);
+            this.btn_subjectDelete.TabIndex = 5;
+            this.btn_subjectDelete.Text = "Видалення предмету";
+            this.btn_subjectDelete.UseVisualStyleBackColor = true;
+            this.btn_subjectDelete.Click += new System.EventHandler(this.btn_subjectDelete_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(10, 133);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(218, 39);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Призначити предмет";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 88);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 24);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Викладач";
+            // 
+            // txt_TeacherName
+            // 
+            this.txt_TeacherName.Location = new System.Drawing.Point(167, 83);
+            this.txt_TeacherName.Name = "txt_TeacherName";
+            this.txt_TeacherName.ReadOnly = true;
+            this.txt_TeacherName.Size = new System.Drawing.Size(341, 29);
+            this.txt_TeacherName.TabIndex = 2;
             // 
             // comboBox1
             // 
@@ -389,55 +447,35 @@
             this.subjectsBindingSource.DataMember = "Subjects";
             this.subjectsBindingSource.DataSource = this.teachersDataSet;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(167, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Оберіть предмет";
+            // 
             // subjectsTableAdapter
             // 
             this.subjectsTableAdapter.ClearBeforeFill = true;
             // 
-            // txt_TeacherName
+            // button2
             // 
-            this.txt_TeacherName.Location = new System.Drawing.Point(167, 83);
-            this.txt_TeacherName.Name = "txt_TeacherName";
-            this.txt_TeacherName.ReadOnly = true;
-            this.txt_TeacherName.Size = new System.Drawing.Size(341, 29);
-            this.txt_TeacherName.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 88);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 24);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Викладач";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(10, 133);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(218, 39);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Призначити предмет";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // Id
-            // 
-            this.Id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.Visible = false;
-            // 
-            // Subject
-            // 
-            this.Subject.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Subject.HeaderText = "Предмет";
-            this.Subject.Name = "Subject";
+            this.button2.Location = new System.Drawing.Point(560, 400);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(251, 59);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Додати викладача";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // TeacherDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 741);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.bindingNavigator1);
@@ -447,6 +485,7 @@
             this.Name = "TeacherDepartment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TeacherDepartment";
+            this.Activated += new System.EventHandler(this.TeacherDepartment_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TeacherDepartment_FormClosing);
             this.Load += new System.EventHandler(this.TeacherDepartment_Load);
             this.groupBox1.ResumeLayout(false);
@@ -506,7 +545,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_TeacherName;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_subjectDelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RecordId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subject;
+        private System.Windows.Forms.Button button2;
     }
 }
