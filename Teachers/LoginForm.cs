@@ -30,7 +30,12 @@ namespace Teachers
             if (!dbHelper.ExistTable("Users") || !dbHelper.ExistTable("Teachers") || !dbHelper.ExistTable("Departments") || !dbHelper.ExistTable("Subjects")
                 || !dbHelper.ExistTable("TeacherSubjects"))
             {
-                MessageBox.Show("Таблиці в базі даних не знайдено", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Таблиці в базі даних не знайдено.\n Таблиці створемо автоматично потім зареєструйте користувача", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dbHelper.CreateDepartmentTable();
+                dbHelper.CreateSubjectTable();
+                dbHelper.CreateTeacherTable();
+                dbHelper.CreateTeacherSubjectTable();
+                dbHelper.CreateUsersTable();
                 return;
             }
             User user;
