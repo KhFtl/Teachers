@@ -21,6 +21,8 @@ namespace Teachers
                 throw new Exception("В файлі конфігураціїї App.config не знайдено рядок підключення до БД");
             }
         }
+
+        #region Users
         public User GetUser(string Login)
         {
             User user;
@@ -90,6 +92,9 @@ namespace Teachers
                 }
             }
         }
+        #endregion
+
+        #region Teachers
         public List<Subject> GetTeacherSubjects(int teacherId)
         { 
             List<Subject> subjects = new List<Subject>();
@@ -167,6 +172,38 @@ namespace Teachers
                 }
             }
         }
+        public List<int> GetIdTeacherSubject(int subjectId)
+        {
+            if (subjectId <= 0)
+            {
+                throw new Exception("Не вірно вказано Id предмета");
+            }
+            List<int> Ids = new List<int>();
+            string query = $"SELECT Id FROM TeacherSubjects WHERE SubjectId = {subjectId}";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand sql = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = sql.ExecuteReader())
+
+                        {
+                            while (reader.Read())
+                            {
+                                Ids.Add(Convert.ToInt32(reader["Id"].ToString()));
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+            return Ids;
+        }
         public bool AddTeacher(Teacher teacher)
         {
             if (String.IsNullOrEmpty(teacher.FirstName) || String.IsNullOrEmpty(teacher.LastName) || teacher.DepartmentId <= 0)
@@ -195,5 +232,162 @@ namespace Teachers
                 }
             }
         }
+        #endregion
+
+        #region Subjects
+        public bool AddSubject(Subject subject)
+        {
+            if (subject == null)
+            {
+                return false;
+            }
+            string query = "INSERT INTO Subjects (Name) VALUES (@Name)";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Name", subject.Name);
+                        int rowAffcted = command.ExecuteNonQuery();
+                        return rowAffcted > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Помилка при додаванні предмету: " + ex.Message);
+                }
+            }
+        }
+        public bool DeleteSubject(int id)
+        {
+            if (id <= 0)
+            {
+                throw new Exception("Не вірно вказано Id запису предмета");
+            }
+            string query = $"DELETE FROM Subjects WHERE Id = {id}";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        int rowAffcted = command.ExecuteNonQuery();
+                        return rowAffcted > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Помилка при видалені предмета: " + ex.Message);
+                }
+            }
+        }
+        public Subject GetSubject(int id)
+        {
+            Subject subject;
+            string query = $"SELECT * FROM Subjects WHERE Id = '{@id}'";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                subject = new Subject
+                                {
+                                    Id = Convert.ToInt32(reader["Id"]),
+                                    Name = reader["Name"].ToString(),
+                                };
+                            }
+                            else
+                            {
+                                subject = null;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+            return subject;
+        }
+        public Subject GetSubject(string name)
+        {
+            Subject subject;
+            if (String.IsNullOrEmpty(name))
+            {
+                throw new Exception("Ім'я предмету пусте");
+            }
+            string query = $"SELECT * FROM Subjects WHERE Name = '{@name}'";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                subject = new Subject
+                                {
+                                    Id = Convert.ToInt32(reader["Id"]),
+                                    Name = reader["Name"].ToString(),
+                                };
+                            }
+                            else
+                            {
+                                subject = null;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+            }
+            return subject;
+        }
+        public bool UpdateSubject(Subject updatedSubject)
+        {
+            if (updatedSubject == null || String.IsNullOrEmpty(updatedSubject.Name) || updatedSubject.Id <= 0 )
+            {
+                throw new Exception("Не вірно вказано дані предмета вони пусті");
+            }
+            Subject subject = GetSubject(updatedSubject.Id);
+            if (subject == null)
+            { 
+                throw new Exception("Не вірно вказано Id предмета");
+            }
+            string query = $"UPDATE Subjects SET Name = @Name WHERE Id = {updatedSubject.Id}";
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@Name", updatedSubject.Name);
+                        int rowAffcted = command.ExecuteNonQuery();
+                        return rowAffcted > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Помилка при редагуванні предмету: " + ex.Message);
+                }
+            }
+        }
+        #endregion
     }
 }

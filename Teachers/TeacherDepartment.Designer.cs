@@ -34,7 +34,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeacherDepartment));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -78,6 +78,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.subjectsTableAdapter = new Teachers.TeachersDataSetTableAdapters.SubjectsTableAdapter();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btn_reload = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.departmentsBindingSource)).BeginInit();
@@ -135,8 +139,8 @@
             // 
             this.lastNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.lastNameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            this.lastNameDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.lastNameDataGridViewTextBoxColumn.HeaderText = "Прізвище виклада";
             this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
             // 
@@ -209,7 +213,9 @@
             this.bindingNavigatorDeleteItem,
             this.saveToolStripButton,
             this.toolStripSeparator,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.toolStripSeparator2,
+            this.toolStripSeparator3});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -381,7 +387,10 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.btn_reload);
             this.groupBox3.Controls.Add(this.btn_subjectDelete);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.txt_TeacherName);
@@ -462,20 +471,49 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(560, 400);
+            this.button2.Location = new System.Drawing.Point(257, 133);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(251, 59);
+            this.button2.Size = new System.Drawing.Size(251, 39);
             this.button2.TabIndex = 4;
             this.button2.Text = "Додати викладача";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(10, 223);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(218, 39);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "Предмети";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btn_reload
+            // 
+            this.btn_reload.Location = new System.Drawing.Point(257, 178);
+            this.btn_reload.Name = "btn_reload";
+            this.btn_reload.Size = new System.Drawing.Size(250, 41);
+            this.btn_reload.TabIndex = 6;
+            this.btn_reload.Text = "Оновити";
+            this.btn_reload.UseVisualStyleBackColor = true;
+            this.btn_reload.Click += new System.EventHandler(this.btn_reload_Click);
             // 
             // TeacherDepartment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1348, 741);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.bindingNavigator1);
@@ -550,5 +588,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn RecordId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Subject;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.Button btn_reload;
     }
 }

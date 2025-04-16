@@ -151,5 +151,21 @@ namespace Teachers
                 firstFocus = false;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SubjectsForm subjectsForm = new SubjectsForm();
+            subjectsForm.ShowDialog();
+        }
+
+        private void btn_reload_Click(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'teachersDataSet.Subjects' table. You can move, or remove it, as needed.
+            this.subjectsTableAdapter.Fill(this.teachersDataSet.Subjects);
+            // TODO: This line of code loads data into the 'teachersDataSet.Departments' table. You can move, or remove it, as needed.
+            this.departmentsTableAdapter.Fill(this.teachersDataSet.Departments);
+            // TODO: This line of code loads data into the 'teachersDataSet.Teachers' table. You can move, or remove it, as needed.
+            this.teachersTableAdapter.Fill(this.teachersDataSet.Teachers);
+        }
     }
 }
