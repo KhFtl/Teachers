@@ -75,5 +75,11 @@ namespace Teachers
             Registration registration = new Registration();
             registration.ShowDialog();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AccountAdmin accountAdmin = new AccountAdmin();
+            accountAdmin.ShowDialog();
+        }
     }
 }

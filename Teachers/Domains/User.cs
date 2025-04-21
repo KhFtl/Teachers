@@ -79,5 +79,7 @@ namespace Teachers.Domains
                 return sb.ToString();
             }
         }
+
+        public string GetHashPassword(string password) => HashPassword(password);
     }
 }
